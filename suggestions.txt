@@ -1,0 +1,57 @@
+***initial installation ***
+python,pytest,Selenium,Faker
+
+1 - use conftest file to change url, username and browser
+2 - command to run test cases without report -   (pytest file_name)
+
+
+*** for report generation ***
+1 - You need to install pytest-hml -  (pip install pytest-html)
+2 - command to run test cases without report -  (pytest file_name --html=report.html)
+3 - to see your report -  open report.html
+
+*** for safari paste this code ***
+@pytest.fixture(scope="module")    
+  def driver():
+  driver = webdriver.Safari()
+  driver.maximize_window()
+  yield driver
+  driver.quit()   
+
+***for safari problem ****
+1 - Open Safari on your macOS.
+2 - Go to the Safari menu (top-left corner of your screen).
+3 - Click on "Preferences."
+4 - Go to the "Advanced" tab.
+5 - Check the box that says "Show Develop menu in menu bar."
+6 - Close the Preferences window.
+7 - Now, you should see a new "Develop" menu item in the Safari menu.
+8 - Click on "Develop" in the menu bar.
+9 - Hover over "Allow Remote Automation" and ensure it's checked. If it's not checked, click on it to enable it.
+10 - Once you've enabled the "Allow Remote Automation" option, you should be able to use Selenium with Safari WebDriver without encountering the "SessionNotCreatedException" error.
+11 - After enabling this option, try running your Selenium tests again. Safari should now allow WebDriver to control it.
+
+*** For priority ***
+1 - add This line before the test cases -  "@pytest.mark.high_priority"
+
+Example -    @pytest.mark.high_priority
+             def test_case_1():
+                 # Test case 1 
+                 
+             @pytest.mark.low_priority
+             def test_case_2():
+               # Test case 2 logic
+
+2-  To run -   without report  - (pytest file_name -k "high_priority")  
+               with report     - (pytest file_name -k "high_priority" --html=report.html)
+
+
+*** Create a Virtual Environment ***
+1- python -m venv venv
+2- Activate the virtual environment:
+   On Windows: venv\Scripts\activate(virtual_env_1\Scripts\activate)
+   On macOS and Linux: source venv/bin/activate
+3- Install the packages from requirements.txt:
+   pip install -r requirements.txt
+      
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
