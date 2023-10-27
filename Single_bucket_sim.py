@@ -55,7 +55,7 @@ def test_user_creation_and_login(driver):
     next_button.click()
 
     password_input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input')))
-    password_input.send_keys('Test_enp@1234')
+    password_input.send_keys('user mail password')
     next_button = driver.find_element(By.XPATH, '//*[@id="passwordNext"]')
     next_button.click()
 
