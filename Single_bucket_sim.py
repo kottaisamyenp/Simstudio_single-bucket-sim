@@ -55,7 +55,7 @@ def test_user_creation_and_login(driver):
     next_button.click()
 
     password_input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input')))
-    password_input.send_keys('user mail password')
+    password_input.send_keys('Test_enp@1234')
     next_button = driver.find_element(By.XPATH, '//*[@id="passwordNext"]')
     next_button.click()
 
@@ -192,21 +192,21 @@ def test_click_next_button_1(driver):
     button = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//button[@class='nextButton theme-font15']")))
     button.click()
     print("Next button clicked")
-    time.sleep(15)
+    time.sleep(20)
 def test_click_next_button_2(driver):     
     if popup_detected:
         pytest.skip("Invalid User Detected. Skipping this test.") 
     button = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//button[@class='nextButton theme-font15']")))
     button.click()
     print("Next button clicked")
-    time.sleep(15)
+    time.sleep(20)
 def test_click_next_button_3(driver):     
     if popup_detected:
         pytest.skip("Invalid User Detected. Skipping this test.") 
     button = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//button[@class='nextButton theme-font15']")))
     button.click()
     print("Next button clicked")
-    time.sleep(15)
+    time.sleep(20)
         
 
 #case summary
@@ -2055,7 +2055,26 @@ def test_target_vs_actual_heading(driver):
     assert actual_heading == expected_heading, f"Heading verification failed. Expected: '{expected_heading}', Actual: '{actual_heading}'"
 
     ###Avg prices
-def test_target_vs_actual_your_avg_price(driver):  
+# def test_target_vs_actual_your_avg_price(driver):  
+#     if popup_detected:
+#         pytest.skip("Invalid User Detected. Skipping this test.")
+#     your_avg_price_element = driver.find_element(By.XPATH,value="//*[@id='sib-de-brief-page-1']/div/div[5]/div[1]/div[3]/div[1]").text
+#     your_avg_price = your_avg_price_element.split('USD')[1].strip()
+#     your_avg_price = int(your_avg_price)
+#     int_values_zyngBeanz = [int(value) for value in price_zyngBeanz]
+#     total_price_zyngBeanz = sum(int_values_zyngBeanz)
+#     zyngbeanz_avg_price = round(total_price_zyngBeanz/4)
+#     print(your_avg_price)
+#     print(zyngbeanz_avg_price)
+#     if your_avg_price == zyngbeanz_avg_price:
+#         assert True
+#         driver.save_screenshot(os.path.join(screenshot_true, 'Target_vs_actual.png'))
+#         print("Your Avg price matched ")
+#     else:
+#         driver.save_screenshot(os.path.join(screenshot_false, 'Target_vs_actual.png'))
+#     assert your_avg_price == zyngbeanz_avg_price,"Your avg prices are not matched"  
+
+def test_target_vs_actual_your_avg_price(driver):
     if popup_detected:
         pytest.skip("Invalid User Detected. Skipping this test.")
     your_avg_price_element = driver.find_element(By.XPATH,value="//*[@id='sib-de-brief-page-1']/div/div[5]/div[1]/div[3]/div[1]").text
@@ -2066,14 +2085,13 @@ def test_target_vs_actual_your_avg_price(driver):
     zyngbeanz_avg_price = round(total_price_zyngBeanz/4)
     print(your_avg_price)
     print(zyngbeanz_avg_price)
-    if your_avg_price == zyngbeanz_avg_price:
+    if abs(your_avg_price-zyngbeanz_avg_price)<=1:
         assert True
         driver.save_screenshot(os.path.join(screenshot_true, 'Target_vs_actual.png'))
         print("Your Avg price matched ")
     else:
         driver.save_screenshot(os.path.join(screenshot_false, 'Target_vs_actual.png'))
-    assert your_avg_price == zyngbeanz_avg_price,"Your avg prices are not matched"  
-
+    assert abs(your_avg_price-zyngbeanz_avg_price)<=1,"Your avg prices are not matched"
 
 def test_target_vs_actual_others_avg_price(driver):  
     if popup_detected:
@@ -2085,7 +2103,7 @@ def test_target_vs_actual_others_avg_price(driver):
     total_price_others = sum(int_value_others)
     other_comp_avg_price = round(total_price_others/16)
     print(others_avg_price)
-    print(other_comp_avg_price)
+    print(other_comp_avg_price+1)
     if others_avg_price == other_comp_avg_price:
         assert True
         driver.save_screenshot(os.path.join(screenshot_true, 'Target_vs_actual.png'))

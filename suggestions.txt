@@ -55,3 +55,6 @@ Example -    @pytest.mark.high_priority
    pip install -r requirements.txt
       
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+Run the script with report 
+pytest Single_bucket_sim.py --html=report.html
